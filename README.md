@@ -52,7 +52,7 @@ run `docker pull node` after docker is installed
 `docker exec -it [Container Name or ID] bash`
 1. if there are some files you don't want to copy inside the container like  Dockerfile, environmental files, info.txt and node_modules, you can create a file called `.dockerignore`
 
-#
+[Branches List :point_up:](#branches)
 
 ## <a name="docker_compose">docker-compose</a>
 1. `git checkout docker-compose`
@@ -71,7 +71,6 @@ run `docker pull node` after docker is installed
 
 [Branches List :point_up:](#branches)
 
-#
 
 ## <a name="docker_multiple">docker-multiple</a>
 1. `git checkout docker-multiple`
@@ -88,3 +87,5 @@ run `docker pull node` after docker is installed
      4. `use cat`: to switch to it.
      5. `show collections`: show list of collections inside the db
      6. check the inserted record: `db.cats.find({})`
+
+[Branches List :point_up:](#branches)
