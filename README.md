@@ -1,7 +1,6 @@
 # nestjs-docker
 Best practice to work with docker in a nestjs app
 
-#
 ## How to Run: 
 1. make sure to install nodejs on your machine: 
 https://nodejs.org/en/
