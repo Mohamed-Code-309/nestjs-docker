@@ -15,10 +15,11 @@ https://hub.docker.com/_/node
 or
 run `docker pull node` after docker is installed
 
-5. The app contains a list of branches, that we can walkthrough to set up a workflow to develop our application into a docker container instead of developing it into our local machine:
+5. The app contains a list of three branches, that we can walkthrough to set up a workflow to develop our application into a docker container instead of developing it into our local machine:
 
    1. **docker-basics**
-
+   2. **docker-compose** 
+   3. **docker-multiple**
 
 ## docker-basics
 - `git checkout docker-basics`
@@ -35,7 +36,7 @@ run `docker pull node` after docker is installed
 `docker build -t nest-app-image .`
   - `-t` [NAME] : we set name using the optional flag `-t`
 - to create container from the image: 
-`docker run -p 4000:3000 -d --name node-app-container node-app-image`
+`docker run -p 4000:3000 -d --name nest-app-container nest-app-image`
   - `--name` [CONTAINER NAME] : to set name for the container
   - `--d`  : to run in detached mode, so the command line can be still free and open
   - `-p 4000:3000`: 
@@ -50,3 +51,33 @@ run `docker pull node` after docker is installed
 - to logging inside our docker container and see files in it:
 `docker exec -it [Container Name or ID] bash`
 - if there are some files you don't want to copy inside the container like  Dockerfile, environmental files, info.txt and node_modules, you can create a file called `.dockerignore`
+
+#
+
+## docker-compose
+- `git checkout docker-compose`
+- with docker compose, we are going to automate docker bootup steps and deploy multiple containers
+- check file `docker-compose.yaml` in root directory
+- run the command :  `docker-compose up -d`
+  - `-d` : to run in detached mode, so the command line can be still free and open
+- to delete the conatiner, run the command : `docker-compose down -v`
+  - `-v` : delete anomnus volumes
+- in case you made a code change and run `docker-compose up -d` again, it create container without building the image as it build it before (cached)
+- to force the build or rebuild the image: `docker-compose up -d --build`
+  - `--build`: force rebuild the image, must be used when we make any change in Dockerfile, code inside app or install new packages
+
+#
+
+## docker-multiple
+- `git checkout docker-multiple`
+-  we will working with multiple docker containers.
+- check the new service `mongo` in `docker-compose.yaml`
+- We will Set up our nest application to connect to our mongo database.
+  - check code in `app.module.ts` that connect to mongo
+  - check the new route in `app.controller.ts` that insert a document in mongo.
+- Go inside the mongo container :
+  -  `docker exec -it mongo -u [USERNAME] -p [PASSWORD]
+  - you can now check current database, create new database
+  - `db`: show current database, by default mongo create database called `test`
+  - check the inserted record: `db.post.find({})`
+
