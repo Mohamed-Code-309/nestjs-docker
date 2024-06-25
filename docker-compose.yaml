@@ -1,0 +1,9 @@
+version: '3'
+services:
+  nest-app:
+    build: .
+    ports:
+      - "4000:3000"
+    volumes:
+      - .:/app:ro
+      - /app/node_modules
